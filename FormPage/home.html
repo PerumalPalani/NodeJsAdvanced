@@ -1,0 +1,357 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Task01</title>
+    <style>
+        *{
+            margin: 0%;
+            padding: 0%;
+            font-family: 'Times New Roman', Times, serif;
+            box-sizing: border-box;
+        }
+        #div1{
+            display: block;
+            justify-items: center;
+            padding-left: 45%;
+            background-color: rgb(103, 15, 246);
+        }
+        #div1 form input{
+            padding: 1%;
+            margin: 1% 2%;
+            font-size: medium;
+        }
+        #div2 div{
+            display: table;
+            padding-left: 15%;
+        }
+        #div2 div form input{
+            font-size: medium;
+            padding: 2%;
+            margin: 2% 2%;
+        }
+        #div3 div{
+            display: table;
+            padding-left: 15%;
+        }
+        #div3 div form input{
+            font-size: medium;
+            padding: 2%;
+            margin: 2% 2%;
+        }
+        h2{
+            text-decoration: underline;
+            padding: 2% 1%;
+            color: aliceblue;
+        }
+        [type *= 'submit']{
+            border-radius: 10%;
+            font-weight: bold   ;
+        }
+        [type *= 'submit']:hover{
+            background-color: rgb(10, 248, 34);
+            color: aliceblue;
+            font-weight: bold;
+        }
+        [type *= 'submit']:active{
+            background-color: rgb(251, 5, 198);
+            color: aliceblue;
+            font-weight: bold;
+        }
+        input{
+            border: 0px;
+            outline: none;
+        }
+        
+    </style>
+</head>
+
+<body>
+    <div id="div1" style="width: 100%;">
+        <h2>Upload CSV file:</h2>
+        <form id="formData" method="post" enctype="multipart/form-data">
+            <input type="file" name="csvFile" id="fileinput"><br>
+            <input type="submit" value="Upload">
+        </form>
+    </div>
+    <hr>
+    <div id="div2" style="width: 100%;">
+        <div style="width: 50%; height: 100px; float: left; background: green;">
+            <h2>Create Form</h2>
+            <form id="create" method="post">
+                <input type="text" name="agent" placeholder="Agent"><br>
+                <input type="text" name="userType" placeholder="User type"><br>
+                <input type="number" name="policy_mode" placeholder="Policy Mode"><br>
+                <input type="text" name="producer" placeholder="Producer"><br>
+                <input type="text" name="policy_number" placeholder="Policy number Leave Empty" value="" readonly><br>
+                <input type="number" name="premium_amount_written" placeholder="Premium Amount Written"><br>
+                <input type="number" name="premium_amount" placeholder="Premium Amount"><br>
+                <input type="text" name="policy_type" placeholder="Policy Type"><br>
+                <input type="text" name="company_name" placeholder="Company Name"><br>
+                <input type="text" name="category_name" placeholder="Category Name"><br>
+                <input type="text" name="policy_start_date" placeholder="Policy Start Date"><br>
+                <input type="text" name="policy_end_date" placeholder="Policy End Date"><br>
+                <input type="text" name="csr" placeholder="CSR"><br>
+                <input type="text" name="account_name" placeholder="Account Name"><br>
+                <input type="text" name="email" placeholder="Email"><br>
+                <input type="text" name="gender" placeholder="Gender"><br>
+                <input type="text" name="firstname" placeholder="First Name"><br>
+                <input type="text" name="city" placeholder="City"><br>
+                <input type="text" name="account_type" placeholder="Account Type"><br>
+                <input type="text" name="phone" placeholder="Phone"><br>
+                <input type="text" name="address" placeholder="Address"><br>
+                <input type="text" name="state" placeholder="State"><br>
+                <input type="text" name="zip" placeholder="Zip Code"><br>
+                <input type="text" name="dob" placeholder="Date of Birth"><br>
+                <input type="text" name="primary" placeholder="Primary"><br>
+                <input type="text" name="ApplicantID" placeholder="Applicant ID"><br>
+                <input type="text" name="agency_id" placeholder="Agency ID"><br>
+                <input type="text" name="hasActive" placeholder="Has Active"><br>
+                <input type="text" name="ClientPolicy" placeholder="Client Policy"><br>
+                <input type="submit" value="Create">
+            </form>
+        </div>
+        <div style="margin-left: 50%; height: 100px; background: rgb(196, 217, 36);width:50%;">
+            <h2>Update Form</h2>
+            <form id="update" method="put">
+                <input type="text" name="policy_number" placeholder="Policy number"><br>
+                <input type="text" name="agent" placeholder="Agent"><br>
+                <input type="text" name="userType" placeholder="User type"><br>
+                <input type="number" name="policy_mode" placeholder="Policy Mode"><br>
+                <input type="text" name="producer" placeholder="Producer"><br>
+                <input type="number" name="premium_amount_written" placeholder="Premium Amount Written"><br>
+                <input type="number" name="premium_amount" placeholder="Premium Amount"><br>
+                <input type="text" name="policy_type" placeholder="Policy Type"><br>
+                <input type="text" name="company_name" placeholder="Company Name"><br>
+                <input type="text" name="category_name" placeholder="Category Name"><br>
+                <input type="text" name="policy_start_date" placeholder="Policy Start Date"><br>
+                <input type="text" name="policy_end_date" placeholder="Policy End Date"><br>
+                <input type="text" name="csr" placeholder="CSR"><br>
+                <input type="text" name="account_name" placeholder="Account Name"><br>
+                <input type="text" name="email" placeholder="Email"><br>
+                <input type="text" name="gender" placeholder="Gender"><br>
+                <input type="text" name="firstname" placeholder="First Name"><br>
+                <input type="text" name="city" placeholder="City"><br>
+                <input type="text" name="account_type" placeholder="Account Type"><br>
+                <input type="text" name="phone" placeholder="Phone"><br>
+                <input type="text" name="address" placeholder="Address"><br>
+                <input type="text" name="state" placeholder="State"><br>
+                <input type="text" name="zip" placeholder="Zip Code"><br>
+                <input type="text" name="dob" placeholder="Date of Birth"><br>
+                <input type="text" name="primary" placeholder="Primary"><br>
+                <input type="text" name="ApplicantID" placeholder="Applicant ID"><br>
+                <input type="text" name="agency_id" placeholder="Agency ID"><br>
+                <input type="text" name="hasActive" placeholder="Has Active"><br>
+                <input type="text" name="ClientPolicy" placeholder="Client Policy"><br>
+                <input type="submit" value="Update">
+            </form>
+        </div>
+    </div>
+    <hr>
+    <div id="div3" style="width: 100%;">
+        <div style="width: 50%; height: 100px; float: left; background: green;">
+            <h2>Read Form</h2>
+            <form method="get" id="read">
+                <input type="text" name="policy_number" placeholder="Policy number"><br>
+                <input type="submit" value="Read">
+            </form>
+        </div>
+        <div style="margin-left: 50%; height: 100px; background: rgb(217, 36, 36);width:50%;">
+            <h2>Delete Form</h2>
+            <form method="post" id="del">
+                <input type="text" name="policy_number" placeholder="Policy number"><br>
+                <input type="submit" value="Delete">
+            </form>
+        </div>
+    </div>
+
+    <script>
+        var create = document.getElementById('create');
+        var upload = document.getElementById('formData');
+        var update = document.getElementById('update');
+        var read = document.getElementById('read');
+        var del = document.getElementById('del');
+        var fileInput = document.getElementById('fileinput');
+
+        //--upload file-
+        upload.addEventListener('submit', (e) => {
+            e.preventDefault();
+            var formdata = new FormData();
+            formdata.append("csvFile", fileInput.files[0]);
+            var requestOptions = {
+                method: 'POST',
+                body: formdata,
+                redirect: 'follow'
+            };
+            fetch("http://localhost:5556/api/upload", requestOptions)
+                .then(response => response.json())
+                .then(result => console.log(result))
+                .catch(error => console.log('error', error));
+            alert('File uploaded Successfully!!');
+            upload.reset();
+        })
+        //---create Policy--
+        create.addEventListener('submit', (e) => {
+            e.preventDefault();
+            let agent = e.target.agent.value
+            let userType = e.target.userType.value
+            let policy_mode = e.target.policy_mode.value
+            let producer = e.target.producer.value
+            let policy_number = e.target.policy_number.value
+            let premium_amount_written = e.target.premium_amount_written.value
+            let premium_amount = e.target.premium_amount.value
+            let policy_type = e.target.policy_type.value
+            let company_name = e.target.company_name.value
+            let category_name = e.target.category_name.value
+            let policy_start_date = e.target.policy_start_date.value
+            let policy_end_date = e.target.policy_end_date.value
+            let csr = e.target.csr.value
+            let account_name = e.target.account_name.value
+            let email = e.target.email.value
+            let gender = e.target.gender.value
+            let firstname = e.target.firstname.value
+            let city = e.target.city.value
+            let account_type = e.target.account_type.value
+            let phone = e.target.phone.value
+            let address = e.target.address.value
+            let state = e.target.state.value
+            let zip = e.target.zip.value
+            let dob = e.target.dob.value
+            let primary = e.target.primary.value
+            let ApplicantID = e.target.ApplicantID.value
+            let agency_id = e.target.agency_id.value
+            let hasActive = e.target.hasActive.value
+            let ClientPolicy = e.target.ClientPolicy.value
+
+            var myHeaders = new Headers();
+            myHeaders.append("Content-Type", "application/json");
+
+            var raw = JSON.stringify({ agent, userType, policy_mode, producer, premium_amount_written, premium_amount, policy_type, company_name, category_name, policy_start_date, policy_end_date, csr, account_name, email, gender, firstname, city, account_type, phone, address, state, zip, dob, primary, ApplicantID, agency_id, hasActive, ClientPolicy });
+
+            var requestOptions = {
+                method: 'POST',
+                headers: myHeaders,
+                body: raw
+            };
+
+            fetch("http://localhost:5556/api/create", requestOptions)
+                .then(response => response.json())
+                .then(result => console.log(result))
+                .catch(error => console.log('error', error));
+            alert('Are you sure given information all are true?')
+            create.reset();
+        })
+
+        //---on submiting update---
+        update.addEventListener('submit', (e) => {
+            e.preventDefault();
+            let data = e.target.policy_number.value;
+            console.log(data);
+            //---updating values
+            let agent = e.target.agent.value
+            let userType = e.target.userType.value
+            let policy_mode = e.target.policy_mode.value
+            let producer = e.target.producer.value
+            let premium_amount_written = e.target.premium_amount_written.value
+            let premium_amount = e.target.premium_amount.value
+            let policy_type = e.target.policy_type.value
+            let company_name = e.target.company_name.value
+            let category_name = e.target.category_name.value
+            let policy_start_date = e.target.policy_start_date.value
+            let policy_end_date = e.target.policy_end_date.value
+            let csr = e.target.csr.value
+            let account_name = e.target.account_name.value
+            let email = e.target.email.value
+            let gender = e.target.gender.value
+            let firstname = e.target.firstname.value
+            let city = e.target.city.value
+            let account_type = e.target.account_type.value
+            let phone = e.target.phone.value
+            let address = e.target.address.value
+            let state = e.target.state.value
+            let zip = e.target.zip.value
+            let dob = e.target.dob.value
+            let primary = e.target.primary.value
+            let ApplicantID = e.target.ApplicantID.value
+            let agency_id = e.target.agency_id.value
+            let hasActive = e.target.hasActive.value
+            let ClientPolicy = e.target.ClientPolicy.value
+
+            let originalObj = { agent, userType, policy_mode, producer, premium_amount_written, premium_amount, policy_type, company_name, category_name, policy_start_date, policy_end_date, csr, account_name, email, gender, firstname, city, account_type, phone, address, state, zip, dob, primary, ApplicantID, agency_id, hasActive, ClientPolicy };
+            let sortObj = {};
+            for (let l in originalObj) {
+                if (originalObj[l] !== '') {
+                    sortObj = { ...sortObj, [l]: originalObj[l] };
+                }
+            }
+            var myHeaders = new Headers();
+            myHeaders.append("Content-Type", "application/json");
+
+            var raw = JSON.stringify({ ...sortObj });
+            var requestOptions = {
+                method: 'PUT',
+                headers: myHeaders,
+                body: raw,
+                redirect: 'follow'
+            };
+
+            fetch(`http://localhost:5556/api/update/${data}`, requestOptions)
+                .then(response => response.json())
+                .then(result => {
+                    console.log(result)
+                    alert(`${data} was updated`)
+                    update.reset()
+                })
+                .catch(error => console.log('error', error));
+        })
+
+        //---Read particular policy--
+        read.addEventListener('submit', (e) => {
+            e.preventDefault();
+            let policy = e.target.policy_number.value;
+            var myHeaders = new Headers();
+            myHeaders.append("Content-Type", "application/json");
+
+            var requestOptions = {
+                method: 'GET',
+                headers: myHeaders,
+                redirect: 'follow'
+            };
+
+            fetch(`http://localhost:5556/api/read/${policy}`, requestOptions)
+                .then(response => response.json())
+                .then(result => console.log(result))
+                .catch(error => console.log('error', error));
+            alert(`Do you want information of policy ${policy}`);
+            read.reset();
+        })
+
+        //---Delete particular policy--
+        del.addEventListener('submit', (e) => {
+            e.preventDefault();
+            let policy = e.target.policy_number.value;
+            var myHeaders = new Headers();
+            myHeaders.append("Content-Type", "application/json");
+
+            var requestOptions = {
+                method: 'POST',
+                headers: myHeaders,
+                redirect: 'follow'
+            };
+
+            fetch(`http://localhost:5556/api/delete/${policy}`, requestOptions)
+                .then(response => response.json())
+                .then(result => console.log(result))
+                .catch(error => console.log('error', error));
+            alert(`Are you sure Delete${policy}`);
+            del.reset();
+        })
+
+
+    </script>
+</body>
+
+</html>
