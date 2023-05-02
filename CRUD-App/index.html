@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        * {
+            padding: 0%;
+            margin: 0%;
+            box-sizing: border-box;
+            font-family: 'Times New Roman', Times, serif;
+            font-size: 20px;
+            /* color: blue; */
+            text-decoration: none;
+        }
+
+        a {
+            border: 1px solid blue;
+            margin: 2%;
+            color: blue;
+            cursor: default;
+        }
+
+        #tab {
+            margin: 5% 10%;
+            padding: 1%;
+        }
+
+        body {
+            background-color: grey;
+        }
+
+        #create {
+            border: 2px solid blue;
+            padding: 1%;
+            float: right;
+            width: 15%;
+            text-align: center;
+            background-color: white;
+            text-decoration: none;
+        }
+
+        table {
+            background-color: white;
+            color: black;
+            padding: 1% 1%;
+            float: left;
+            /* display: none; */
+        }
+
+        th {
+            background-color: grey;
+        }
+    </style>
+    <title>Index HTML</title>
+</head>
+
+<body>
+    <div id="tab">
+        <a href="create.html" id="create">Add</a><br>
+        <table id="tab01">
+            <thead>
+                <tr id="tableh">
+
+                </tr>
+            </thead>
+            <tbody id="tableb">
+
+            </tbody>
+        </table>
+    </div>
+    <script>
+        var t = document.getElementById('tab01');
+        var tablehead = document.getElementById('tableh');
+        var tablebody = document.getElementById('tableb');
+        var approve = true;
+
+        const getusers = () => {
+            fetch('http://127.0.0.1:3052/users')
+                .then((res) => res.json())
+                .then((users) => {
+                    console.log(users);
+                    const thead = Object.keys(users[0]);
+                    console.log(thead);
+                    thead.push('actions');
+                    thead.forEach((e) => {
+                        let h = tablehead.appendChild(document.createElement('th'));
+                        h.innerHTML = e.replace(/^./, e[0].toUpperCase());
+                    });
+                    users.forEach((e) => {
+                        let h = tablebody.appendChild(document.createElement('tr'));
+                        for (let i = 0; i < thead.length; i++) {
+                            if (i == thead.length - 1) {
+                                let h2 = h.appendChild(document.createElement('td'));
+                                let h3 = h2.appendChild(document.createElement('a'));
+                                let h4 = h2.appendChild(document.createElement('a'));
+                                h3.setAttribute("style", "color:green;");
+                                h4.setAttribute("style", "color:red");
+                                // h3.setAttribute("href", "update.html");
+                                // h4.setAttribute("href", "delete.html");
+                                h3.innerHTML = 'Update';
+                                h4.innerHTML = 'Delete';
+                                h3.addEventListener('click', (l) => {
+                                    console.log(e.id);
+                                    // localStorage.setItem("userId", JSON.stringify(e.id));
+                                    l.target.setAttribute("href", `update.html?${e.id}`);
+                                });
+                                h4.addEventListener('click', (l) => {
+                                    console.log(e.id);
+                                    // localStorage.setItem("userId", JSON.stringify(e.id));
+                                    l.target.setAttribute("href", `delete.html?${e.id}`);
+                                });
+                            }
+                            else {
+                                let h2 = h.appendChild(document.createElement('td'));
+                                h2.innerHTML = e[thead[i]];
+                            }
+                        }
+                    });
+                    approve = false;
+                });
+        };
+        if (approve === true) {
+            getusers();
+        }
+    </script>
+
+</body>
+
+</html>
