@@ -13,8 +13,8 @@ app.use(cors());
 const { MongoClient, ServerApiVersion } = require('mongodb');
 var MongoClient = require('mongodb').MongoClient;
 
-// var url = "mongodb+srv://perumal199601:Perumal1996@cluster0.mpjpn5c.mongodb.net/test";
-var url = 'mongodb+srv://perumal199601:Perumal1996@cluster0.mpjpn5c.mongodb.net/test'
+// var url = "mongodb+srv://userName:password@cluster0.mpjpn5c.mongodb.net/test";
+var url = 'mongodb+srv://userName:password@cluster0.mpjpn5c.mongodb.net/test'
 // const client = new MongoClient(url, { useNewUrlParser: true, useUnifiedTopology: true, serverApi: ServerApiVersion.v1 });
 
 MongoClient.connect(url,function(err, db) {
@@ -27,7 +27,7 @@ MongoClient.connect(url,function(err, db) {
 } */
 
 const mongoose = require('mongoose');
-const uri = "mongodb+srv://perumal199601:password@cluster0.mpjpn5c.mongodb.net/demo";
+const uri = "mongodb+srv://userName:password@cluster0.mpjpn5c.mongodb.net/demo";
 let connectdb = async () => {
     mongoose.connect(uri, {
         useNewUrlParser: true, useUnifiedTopology: true
