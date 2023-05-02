@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard page</title>
+</head>
+
+<body>
+    <div id="main">
+        <a href="homePage.html" id="link" hidden>link</a>
+        <div id="data">
+
+        </div>
+        <form id="logout" method="put">
+            <button id="logout" type="submit">Logout</button>
+        </form>
+
+    </div>
+    <script>
+        let div = document.getElementById('main');
+        let logout = document.getElementById('logout');
+        let home = document.getElementById('link');
+        let dom = document.getElementById('data');
+        const token01 = sessionStorage.getItem('token');
+        let flag = true;
+        console.log(token01);
+        const share = {token: token01};
+
+        //---collecting the data--
+        const getUsers = ()=>{
+        fetch(`http://localhost:3054/logout/${token01}`, {
+                method: "GET",
+                headers: { "Content-type": "application/json" }
+            })
+                .then((res) => res.json())
+                .then((user) => {
+                    console.log(user);
+                    let h01 = document.createElement('h1');
+                    let h02 = document.createElement('h1');
+                    let h03 = document.createElement('h1');
+                    let val = dom.appendChild(h01);
+                    val.setAttribute('style', 'color:green;');
+                    val.innerHTML = `WelCome to Right Avenue infotech!!`;
+                    let val1 = dom.appendChild(h02);
+                    val1.setAttribute('style', 'color:blue;');
+                    val1.innerHTML = `Hi User Your Name: ${user.userName}`;
+                    let val2 = dom.appendChild(h03);
+                    val2.setAttribute('style', 'color:rgb(103, 70, 60);');
+                    val2.innerHTML = `Your Role For: ${user.role}`;
+                    flag = false;
+                })
+            }
+            if(flag === true){
+                getUsers();
+            }
+
+
+        //----logout the user---
+        logout.addEventListener('submit', (e) => {
+            e.preventDefault();
+            fetch(`http://localhost:3054/logout/${token01}`, {
+                method: "PUT",
+                headers: { "Content-type": "application/json" }
+            })
+                .then((res) => res.json())
+                .then((user) => {
+                    console.log(user);
+                    home.click();
+                    sessionStorage.clear();
+                })
+        })
+
+    </script>
+    <!-- <script src="./test.js"></script> -->
+
+</body>
+
+</html>

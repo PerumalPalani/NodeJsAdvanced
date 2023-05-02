@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My App Home Page</title>
+    <style>
+        * {
+            font-family: 'Times New Roman', Times, serif;
+            font-size: 20px;
+            box-sizing: border-box;
+            margin: 0%;
+            padding: 0%;
+        }
+
+        #h {
+            margin: 5% 30%;
+            padding: 2% 2%;
+            border: 5px ridge gray;
+            background-color: aquamarine;
+            border-radius: 2%;
+        }
+
+        input,
+        button,
+        h3 {
+            margin: 2% 2%;
+            padding: 1% 1%;
+        }
+
+        #sub01 {
+            display: none;
+        }
+
+        #sub02 {
+            display: none;
+        }
+
+        #sign {
+            margin: 5% 5%;
+            padding: 3% 10%;
+        }
+
+        #login {
+            margin: 5% 5%;
+            padding: 3% 10%;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="h">
+        <div id="h01">
+            <a href="homePage.html" id="link" hidden>link</a>
+            <a href="dashboard.html" id="dash" hidden>access</a>
+            <h3 style="font-weight: bold; text-decoration: underline;">Choose your option:</h3>
+            <button id="sign">SignUp</button>
+            <button id="login">Login</button>
+        </div>
+        <div id="sub01">
+            <form id="signupUse" method="post">
+                <h3 style="font-weight: bold; text-decoration: underline;">Signup form</h3>
+                <input type="text" name="userName" placeholder="Enter your UserName"><br>
+                <input type="password" name="password" placeholder="Enter your Password"><br>
+                <input type="text" name="role" placeholder="Enter your roles"><br>
+                <button type="submit" id="sub">Submit</button>
+                <button type="reset">Reset</button>
+            </form>
+        </div>
+        <div id="sub02">
+            <form id="loginUse" method="post">
+                <h3 style="font-weight: bold; text-decoration: underline;">Login form</h3>
+                <input type="text" name="userName" placeholder="Enter your UserName"><br>
+                <input type="password" name="password" placeholder="Enter your Password"><br>
+                <button type="submit" id="log01">Login</button>
+                <button type="reset">Reset</button>
+            </form>
+        </div>
+    </div>
+    <script>
+        let head = document.getElementById('h01');
+        let sub01 = document.getElementById('sub01');
+        let sub02 = document.getElementById('sub02');
+        let sign = document.getElementById('sign');
+        let login = document.getElementById('login');
+        let home = document.getElementById('link');
+        let formSign = document.getElementById('signupUse');
+        let formLogin = document.getElementById('loginUse');
+        let dashboard = document.getElementById('dash');
+        //---SignUp button--
+        sign.addEventListener('click', () => {
+            sub01.style.display = 'block';
+            head.style.display = 'none';
+        })
+        //---Login button---
+        login.addEventListener('click', () => {
+            sub02.style.display = 'block';
+            head.style.display = 'none';
+        })
+        //---on submiting signup---
+        formSign.addEventListener('submit', (e) => {
+            e.preventDefault();
+            let userName = e.target.userName.value;
+            let password = e.target.password.value;
+            let role = e.target.role.value;
+            fetch("http://localhost:3054/signup", {
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify({ userName, password, role }),
+            })
+                .then((res) => res.json())
+                .then(() => {
+                })
+            home.click();
+            alert(`${userName} was created`);
+            formSign.reset();
+        })
+        //---on submiting login---
+        formLogin.addEventListener('submit', (e) => {
+            e.preventDefault();
+            let userName = e.target.userName.value;
+            let password = e.target.password.value;
+
+            fetch("http://localhost:3054/login", {
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify({ userName, password }),
+            })
+                .then((res) => res.json())
+                .then((user) => {
+                    console.log(typeof user);
+                    dashboard.click();
+                    alert(`${userName} was logined`);
+                    let a = sessionStorage.setItem('token', user[0].token);
+                    formLogin.reset();
+                })
+        })
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,12 @@
+{
+  "name": "projectrealtime01",
+  "version": "1.0.0",
+  "description": "",
+  "main": "operation.js",
+  "scripts": {
+    "start": "nodemon operation.js"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC"
+}
