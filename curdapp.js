@@ -9,25 +9,9 @@ app.use(cors());
 
 //--DataBase connections
 
-/* {
-const { MongoClient, ServerApiVersion } = require('mongodb');
-var MongoClient = require('mongodb').MongoClient;
-
-// var url = "mongodb+srv://perumal199601:Perumal1996@cluster0.mpjpn5c.mongodb.net/test";
-var url = 'mongodb+srv://perumal199601:Perumal1996@cluster0.mpjpn5c.mongodb.net/test'
-// const client = new MongoClient(url, { useNewUrlParser: true, useUnifiedTopology: true, serverApi: ServerApiVersion.v1 });
-
-MongoClient.connect(url,function(err, db) {
-  if (err) throw err;
-  console.log("Database created!");
-  const collection = MongoClient.db("test").collection("devices");
-
-  db.close();
-});
-} */
 
 const mongoose = require('mongoose');
-const uri = "mongodb+srv://perumal199601:password@cluster0.mpjpn5c.mongodb.net/demo";
+const uri = "mongodb+srv://userName:password@cluster0.mpjpn5c.mongodb.net/demo";
 let connectdb = async () => {
     mongoose.connect(uri, {
         useNewUrlParser: true, useUnifiedTopology: true
