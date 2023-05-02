@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Update The Record</title>
+    <style>
+        * {
+            padding: 0%;
+            margin: 0%;
+            box-sizing: border-box;
+            font-family: 'Times New Roman', Times, serif;
+            font-size: 20px;
+            /* color: blue; */
+        }
+
+        body {
+            background-color: grey;
+        }
+
+        label {
+            display: inline-block;
+            width: 10%;
+            margin: 1% 1%;
+        }
+
+        #update {
+            margin: 10% 20%;
+        }
+
+        input {
+            /* border: 2px solid blue; */
+            padding: 1%;
+            margin: 2%;
+            outline: 0px;
+        }
+
+        button[type='submit'] {
+            width: 250px;
+            padding: 1%;
+            margin: 2%;
+            color: blue;
+            font-weight: bold;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="update">
+        <a href="index01.html" id="link" hidden>My link</a>
+        <form id="update-form">
+            <input type="text" name="firstName" placeholder="First Name">
+            <input type="text" name="lastName" placeholder="Last Name">
+            <input type="tel" name="mobileNumber" placeholder="Phone Number">
+            <input type="email" name="emailId" placeholder="Email Id">
+            <input type="text" name="city" placeholder="Enter your city">
+            <button type="submit">Update</button>
+        </form>
+    </div>
+    <script>
+        // let id = localStorage.getItem('userId')
+        var updatef = document.getElementById('update-form');
+        var homepage = document.getElementById('link');
+        let approve = true;
+        var str = window.location.search
+        var id = str.replace(/([^\w]|_)/g, '');
+        console.log(id);
+        // console.log(window.location.search);
+
+        //---get id by using--
+        var updateUsers = () => {
+            fetch(`http://127.0.0.1:3052/users/${id}`)
+                .then((res) => res.json())
+                .then((users) => {
+                    console.log(users[0].firstName);
+                    console.log(users[0]);
+                    document.getElementsByName('firstName')[0].value = users[0].firstName;
+                    document.getElementsByName('lastName')[0].value = users[0].lastName;
+                    document.getElementsByName('mobileNumber')[0].value = users[0].mobileNumber;
+                    document.getElementsByName('emailId')[0].value = users[0].emailId;
+                    document.getElementsByName('city')[0].value = users[0].city;
+                    console.log('fetched');
+                    // let clear = localStorage.clear();
+                    approve = false;
+                });
+        };
+        if(approve === true){
+        updateUsers();
+        }
+
+//---update--
+        updatef.addEventListener('submit', (e) => {
+            e.preventDefault();
+            const firstName = e.target.firstName.value;
+            const lastName = e.target.lastName.value;
+            const mobileNumber = e.target.mobileNumber.value;
+            const emailId = e.target.emailId.value;
+            const city = e.target.city.value;
+            fetch(`http://127.0.0.1:3052/users/${id}`, {
+                method: "PUT",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify({ firstName, lastName, mobileNumber, emailId, city }),
+            })
+                .then((res) => res.json())
+                .then((user) => {
+                    console.log(user);
+                    homepage.click();
+                    alert(`${user[0].firstName} updated!`);
+                    createf.reset();
+                });
+        }); 
+    </script>
+</body>
+
+</html>
